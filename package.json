@@ -1,25 +1,45 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "business-security-website",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Website created in Gatsby about business security",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "github.com/piotrek813/",
   "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^2.20.35",
     "gatsby-image": "^2.3.5",
     "gatsby-plugin-manifest": "^2.3.7",
     "gatsby-plugin-offline": "^3.1.5",
     "gatsby-plugin-react-helmet": "^3.2.5",
     "gatsby-plugin-sharp": "^2.5.7",
+    "gatsby-plugin-styled-components": "^3.3.0",
     "gatsby-source-filesystem": "^2.2.5",
     "gatsby-transformer-sharp": "^2.4.7",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^6.0.0"
+    "react-helmet": "^6.0.0",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
-    "prettier": "2.0.4"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "gatsby-plugin-eslint": "^2.0.8",
+    "gatsby-plugin-root-import": "^2.0.5",
+    "gatsby-plugin-stylelint": "^3.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.3.3",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
+    "stylelint-webpack-plugin": "^1.2.3"
   },
   "keywords": [
     "gatsby"
@@ -40,5 +60,17 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --config .prettierrc --write",
+      "eslint --fix",
+      "stylelint"
+    ]
   }
 }
