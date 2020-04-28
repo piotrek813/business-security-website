@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
-        assets: path.join(__dirname, 'src/assets'),
+        images: path.join(__dirname, 'src/images'),
         components: path.join(__dirname, 'src/components'),
         pages: path.join(__dirname, 'src/pages'),
         templates: path.join(__dirname, 'src/templates'),
@@ -45,7 +45,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: path.join(__dirname, `src`, `images`),
       },
     },
     `gatsby-transformer-sharp`,
