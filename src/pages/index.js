@@ -1,5 +1,10 @@
 import React from 'react';
+import MainTemplate from 'templates/MainTemplate';
 
-const IndexPage = () => <h1>Metallica</h1>;
+const IndexPage = () => (
+  <MainTemplate>
+    <></>
+  </MainTemplate>
+);
 
 export default IndexPage;
