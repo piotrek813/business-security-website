@@ -1,9 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
 import media from 'utils/media';
 import Hamburger from 'components/Hamburger';
-import useOutsideAlerter from 'components/useOutsideAlerter';
 
 const StyledNav = styled.nav`
   position: fixed;
@@ -103,9 +102,6 @@ const StyledNavLink = styled(Link)`
 const Navbar = () => {
   const [isMenuOpen, toggleMenuOpen] = useState(false);
   const navbarRef = useRef(null);
-  useOutsideAlerter(navbarRef, () => {
-    toggleMenuOpen(false);
-  });
 
   const NavItems = [
     { to: '/o-mnie', label: 'O mnie' },
@@ -114,14 +110,32 @@ const Navbar = () => {
     { to: '/kontakt', label: 'Kontakt' },
   ];
 
-  const handleMenuOpen = () => {
+  const handleDocumentClick = (e) => {
+    if (
+      navbarRef.current &&
+      !navbarRef.current.contains(e.target) &&
+      isMenuOpen === true
+    ) {
+      toggleMenuOpen(false);
+    }
+  };
+
+  const handleHamburgerClick = (e) => {
+    e.stopPropagation();
     toggleMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [navbarRef, isMenuOpen]);
 
   return (
     <StyledNav>
       <StyledLogo>SomeCompany</StyledLogo>
-      <StyledHamburger isOpen={isMenuOpen} onClick={handleMenuOpen} />
+      <StyledHamburger isOpen={isMenuOpen} onClick={handleHamburgerClick} />
       <StyledList isOpen={isMenuOpen} ref={navbarRef}>
         {NavItems.map(({ to, label }) => (
           <StyledListItem key={to}>
