@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from 'utils/media';
 import Hero from 'components/Hero';
 
 const StyledWrapper = styled.header`
@@ -15,17 +16,46 @@ const StyledContent = styled.section`
   align-items: center;
   color: ${({ theme }) => theme.white};
   text-align: center;
-  padding: 0 25px;
+  width: 90%;
+  margin: 0 auto;
+
+  ${media.medium`
+      width: 890px;
+  `}
 `;
 
 const H1 = styled.h1`
   font-size: 27px;
   margin: 0;
+
+  ${media.xsmall`
+      font-size: 38px;
+  `}
+
+  ${media.medium`
+      font-size: 50px;
+  `}
+
+  ${media.big`
+      font-size: 60px;
+  `}
 `;
 
 const P = styled.p`
   font-size: 15px;
   margin: 0;
+
+  ${media.xsmall`
+      font-size: 16px;
+  `}
+
+  ${media.medium`
+      font-size: 17px;
+  `}
+
+  ${media.big`
+      font-size: 20px;
+  `}
 `;
 
 const HeaderTemplate = () => (
