@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import media from 'utils/media';
 import Hero from 'components/Hero';
+import Button from 'components/Button';
 
 const StyledWrapper = styled.header`
   width: 100%;
@@ -58,6 +59,24 @@ const P = styled.p`
   `}
 `;
 
+const Actions = styled.div`
+  display: grid;
+  margin: 23px auto 0 auto;
+  width: 60%;
+  grid-gap: 8px;
+
+  ${media.xsmall`
+      width: 450px;
+      grid-template-columns: 1fr 1fr;
+  `}
+`;
+
+const StyledButton = styled(Button)`
+  ${media.big`
+      padding: 1em 3.4em;
+  `}
+`;
+
 const HeaderTemplate = () => (
   <StyledWrapper>
     <Hero />
@@ -68,6 +87,10 @@ const HeaderTemplate = () => (
         faucibus cras massa. Neque ultrices diam vitae nibh arcu. Feugiat semper
         quis a pellentesque mi, in aliquet. Eget sed malesuada quis velit.
       </P>
+      <Actions>
+        <StyledButton>Kontakt</StyledButton>
+        <StyledButton secondary>Moja oferta</StyledButton>
+      </Actions>
     </StyledContent>
   </StyledWrapper>
 );
