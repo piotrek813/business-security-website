@@ -8,11 +8,13 @@ const StyledNav = styled.nav`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9998;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ theme }) => theme.primary}d9;
+  background: ${({ theme }) => theme.darkenPrimary}d9;
+  box-shadow: 0 4px 4px ${({ theme }) => theme.black}40;
   color: ${({ theme }) => theme.white};
   padding: 20px 12px;
 

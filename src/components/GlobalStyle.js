@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily};
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     font-size: 1.6em;
+    height: 400vh;
   }
 
   *, *::after, *::before {
