@@ -13,7 +13,7 @@ const MainTemplate = ({ children }) => {
         <GlobalStyle />
         <Navbar />
         <HeaderTemplate />
-        {children}
+        <main>{children}</main>
       </>
     </ThemeProvider>
   );
