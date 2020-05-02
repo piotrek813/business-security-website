@@ -7,7 +7,7 @@ const BlogPage = () => (
   <MainTemplate hero={{ heading: 'Blog', paragraph: '' }}>
     <PostReference
       isBig
-      heading="Outsourcing funkcji i zadań IOD"
+      heading="Najnowszy post"
       paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
       image="https://source.unsplash.com/300x300/?business"
     />

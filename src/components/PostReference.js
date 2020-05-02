@@ -10,9 +10,12 @@ const StyledWrapper = styled.article`
   ${({ theme, isBig }) =>
     isBig &&
     css`
-      grid-template-rows: auto;
-      grid-template-columns: 1fr 1fr;
-      height: 530px;
+      ${media.small`
+        grid-template-rows: auto;
+        grid-template-columns: 1fr 1fr;
+        height: 530px;
+      `}
+
       padding: ${theme.padding.normal};
       ${media.medium`
         padding: ${theme.padding.medium};
@@ -33,13 +36,16 @@ const StyledContent = styled.div`
       margin: auto;
     `}
 `;
+
 const H3 = styled.h3`
   color: ${({ theme }) => theme.secondary};
   margin: 0;
 `;
+
 const P = styled.p`
   margin: 7px 0 0 0;
 `;
+
 const Img = styled.img`
   height: 100%;
   width: 100%;
@@ -49,7 +55,7 @@ const Img = styled.img`
 const PostReference = ({ heading, paragraph, image, isBig }) => (
   <StyledWrapper isBig={isBig}>
     <Img src={image} alt={image} />
-    <StyledContent>
+    <StyledContent isBig={isBig}>
       <H3>{heading}</H3>
       <P>{paragraph}</P>
     </StyledContent>
