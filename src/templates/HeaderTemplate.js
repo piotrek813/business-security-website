@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import media from 'utils/media';
 import Hero from 'components/Hero';
 import Button from 'components/Button';
@@ -77,22 +78,24 @@ const StyledButton = styled(Button)`
   `}
 `;
 
-const HeaderTemplate = () => (
+const HeaderTemplate = ({ hero: { heading, paragraph } }) => (
   <StyledWrapper>
     <Hero />
     <StyledContent>
-      <H1>Bezpieczeństwo Biznesowe</H1>
-      <P>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget risus
-        faucibus cras massa. Neque ultrices diam vitae nibh arcu. Feugiat semper
-        quis a pellentesque mi, in aliquet. Eget sed malesuada quis velit.
-      </P>
+      <H1>{heading}</H1>
+      {paragraph !== '' && <P>{paragraph}</P>}
       <Actions>
-        <StyledButton>Kontakt</StyledButton>
-        <StyledButton secondary>Moja oferta</StyledButton>
+        <StyledButton to="/kontakt">Kontakt</StyledButton>
+        <StyledButton as="a" href="/#services" secondary>
+          Moja oferta
+        </StyledButton>
       </Actions>
     </StyledContent>
   </StyledWrapper>
 );
+
+HeaderTemplate.propTypes = {
+  hero: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default HeaderTemplate;

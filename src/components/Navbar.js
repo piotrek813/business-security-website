@@ -71,8 +71,9 @@ const StyledListItem = styled.li`
   }
 `;
 
-const StyledLogo = styled.span`
-  font-size: inherit;
+const StyledLogo = styled(Link)`
+  color: inherit;
+  text-decoration: none;
 `;
 
 const StyledNavLink = styled(Link)`
@@ -107,7 +108,7 @@ const Navbar = () => {
 
   const NavItems = [
     { to: '/o-mnie', label: 'O mnie' },
-    { to: '/#oferta', label: 'Oferta' },
+    { to: '/#services', label: 'Oferta' },
     { to: '/blog', label: 'Blog' },
     { to: '/kontakt', label: 'Kontakt' },
   ];
@@ -136,13 +137,13 @@ const Navbar = () => {
 
   return (
     <StyledNav>
-      <StyledLogo>SomeCompany</StyledLogo>
+      <StyledLogo to="/">SomeCompany</StyledLogo>
       <StyledHamburger isOpen={isMenuOpen} onClick={handleHamburgerClick} />
       <StyledList isOpen={isMenuOpen} ref={navbarRef}>
         {NavItems.map(({ to, label }) => (
           <StyledListItem key={to}>
             {to.includes('#') ? (
-              <StyledNavLink as="a" to={to}>
+              <StyledNavLink as="a" href={to}>
                 {label}
               </StyledNavLink>
             ) : (

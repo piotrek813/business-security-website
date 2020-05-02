@@ -6,13 +6,13 @@ import GlobalStyle from 'components/GlobalStyle';
 import HeaderTemplate from 'templates/HeaderTemplate';
 import Navbar from '../components/Navbar';
 
-const MainTemplate = ({ children }) => {
+const MainTemplate = ({ hero, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
         <Navbar />
-        <HeaderTemplate />
+        <HeaderTemplate hero={hero} />
         <main>{children}</main>
       </>
     </ThemeProvider>
@@ -20,6 +20,7 @@ const MainTemplate = ({ children }) => {
 };
 
 MainTemplate.propTypes = {
+  hero: PropTypes.objectOf(PropTypes.string).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

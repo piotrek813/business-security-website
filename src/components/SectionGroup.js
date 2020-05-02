@@ -26,7 +26,7 @@ const StyledWrapper = styled.section`
               grid-gap: 27px;
             `
           : css`
-              grid-template-rows: repeat(3, 800px);
+              grid-auto-rows: 800px;
             `};
   `}
 `;

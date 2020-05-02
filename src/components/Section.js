@@ -21,16 +21,16 @@ const StyledSection = styled.section`
       text-align: center;
     `}
 
-  ${({ isPadding }) =>
+  ${({ theme, isPadding }) =>
     isPadding &&
     css`
-      padding: ${({ theme }) => theme.padding.normal};
+      padding: ${theme.padding.normal};
       ${media.medium`
-        padding: ${({ theme }) => theme.padding.medium};
+        padding: ${theme.padding.medium};
       `}
 
       ${media.big`
-        padding: ${({ theme }) => theme.padding.big};
+        padding: ${theme.padding.big};
       `}
     `}
   ${({ image }) =>
