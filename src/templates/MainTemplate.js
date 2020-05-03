@@ -12,7 +12,7 @@ const MainTemplate = ({ hero, children }) => {
       <>
         <GlobalStyle />
         <Navbar />
-        <HeaderTemplate hero={hero} />
+        <HeaderTemplate {...hero} />
         <main>{children}</main>
       </>
     </ThemeProvider>
@@ -20,7 +20,9 @@ const MainTemplate = ({ hero, children }) => {
 };
 
 MainTemplate.propTypes = {
-  hero: PropTypes.objectOf(PropTypes.string).isRequired,
+  hero: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+  ).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import media from 'utils/media';
 import Hero from 'components/Hero';
@@ -61,41 +61,54 @@ const P = styled.p`
 `;
 
 const Actions = styled.div`
-  display: grid;
+  width: fit-content;
   margin: 23px auto 0 auto;
-  width: 60%;
-  grid-gap: 8px;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-gap: 5px;
 
-  ${media.xsmall`
-      width: 450px;
-      grid-template-columns: 1fr 1fr;
-  `}
+  ${({ isOne }) =>
+    !isOne &&
+    css`
+      ${media.small`
+        grid-template-columns: 1fr 1fr;
+    `}
+    `}
 `;
 
-const StyledButton = styled(Button)`
-  ${media.big`
-      padding: 1em 3.4em;
-  `}
-`;
-
-const HeaderTemplate = ({ hero: { heading, paragraph } }) => (
+const HeaderTemplate = ({ heading, paragraph, buttons }) => (
   <StyledWrapper>
     <Hero />
     <StyledContent>
       <H1>{heading}</H1>
       {paragraph !== '' && <P>{paragraph}</P>}
-      <Actions>
-        <StyledButton to="/kontakt">Kontakt</StyledButton>
-        <StyledButton as="a" href="/#services" secondary>
-          Moja oferta
-        </StyledButton>
+      <Actions isOne={buttons.length === 1}>
+        {!buttons.length ? (
+          <>
+            <Button to="/kontakt">Kontakt</Button>
+            <Button to="/#services" secondary>
+              Moja oferta
+            </Button>
+          </>
+        ) : (
+          buttons.map(({ to, label }) => (
+            <Button key={to} to={to}>
+              {label}
+            </Button>
+          ))
+        )}
       </Actions>
     </StyledContent>
   </StyledWrapper>
 );
-
 HeaderTemplate.propTypes = {
-  hero: PropTypes.objectOf(PropTypes.string).isRequired,
+  heading: PropTypes.string.isRequired,
+  paragraph: PropTypes.string.isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.object),
+};
+
+HeaderTemplate.defaultProps = {
+  buttons: [],
 };
 
 export default HeaderTemplate;

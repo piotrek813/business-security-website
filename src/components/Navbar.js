@@ -142,13 +142,7 @@ const Navbar = () => {
       <StyledList isOpen={isMenuOpen} ref={navbarRef}>
         {NavItems.map(({ to, label }) => (
           <StyledListItem key={to}>
-            {to.includes('#') ? (
-              <StyledNavLink as="a" href={to}>
-                {label}
-              </StyledNavLink>
-            ) : (
-              <StyledNavLink to={to}>{label}</StyledNavLink>
-            )}
+            <StyledNavLink to={to}>{label}</StyledNavLink>
           </StyledListItem>
         ))}
       </StyledList>

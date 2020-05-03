@@ -17,6 +17,7 @@ const StyledWrapper = styled.article`
       `}
 
       padding: ${theme.padding.normal};
+
       ${media.medium`
         padding: ${theme.padding.medium};
       `}
@@ -40,10 +41,31 @@ const StyledContent = styled.div`
 const H3 = styled.h3`
   color: ${({ theme }) => theme.secondary};
   margin: 0;
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+
+  ${({ isBig }) =>
+    isBig &&
+    css`
+      ${media.small`
+          font-size: 22px;
+      `}
+
+      ${media.big`
+          font-size: 30px;
+      `}
+    `}
 `;
 
 const P = styled.p`
   margin: 7px 0 0 0;
+
+  ${({ isBig }) =>
+    isBig &&
+    css`
+      ${media.big`
+          font-size: 18px;
+      `}
+    `}
 `;
 
 const Img = styled.img`
@@ -56,8 +78,8 @@ const PostReference = ({ heading, paragraph, image, isBig }) => (
   <StyledWrapper isBig={isBig}>
     <Img src={image} alt={image} />
     <StyledContent isBig={isBig}>
-      <H3>{heading}</H3>
-      <P>{paragraph}</P>
+      <H3 isBig={isBig}>{heading}</H3>
+      <P isBig={isBig}>{paragraph}</P>
     </StyledContent>
   </StyledWrapper>
 );
