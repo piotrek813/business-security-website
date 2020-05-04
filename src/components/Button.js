@@ -3,14 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 
-const StyledWrapper = styled.button`
-  background: none;
-  padding: 0;
-  border: 0;
-  display: block;
-`;
-
-const StyledLink = styled(Link)`
+const StyledWrapper = styled(Link)`
   padding: 1.2em 3em;
   background: ${({ theme, secondary }) => (secondary ? 'none' : theme.primary)};
   box-shadow: ${({ theme, secondary }) =>
@@ -24,11 +17,9 @@ const StyledLink = styled(Link)`
   align-items: center;
 `;
 
-const Button = ({ children, to, secondary, ...props }) => (
-  <StyledWrapper {...props}>
-    <StyledLink to={to} secondary={secondary}>
-      {children}
-    </StyledLink>
+const Button = ({ children, to, secondary }) => (
+  <StyledWrapper to={to} secondary={secondary ? 1 : undefined}>
+    {children}
   </StyledWrapper>
 );
 
