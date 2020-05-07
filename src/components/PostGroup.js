@@ -35,7 +35,7 @@ const StyledH2 = styled(H2)`
 
 const PostGroup = ({ heading, bgColor, children }) => (
   <StyledWrapper bgColor={bgColor}>
-    <StyledH2>{heading}</StyledH2>
+    {heading !== '' && <StyledH2>{heading}</StyledH2>}
     <Grid>{children}</Grid>
   </StyledWrapper>
 );
@@ -45,11 +45,12 @@ PostGroup.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
-  heading: PropTypes.string.isRequired,
+  heading: PropTypes.string,
   bgColor: PropTypes.oneOf(['dark', 'white', 'gray']),
 };
 
 PostGroup.defaultProps = {
+  heading: '',
   bgColor: 'gray',
 };
 

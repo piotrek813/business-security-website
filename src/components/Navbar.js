@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 import media from 'utils/media';
 import Hamburger from 'components/Hamburger';
 
@@ -142,7 +143,13 @@ const Navbar = () => {
       <StyledList isOpen={isMenuOpen} ref={navbarRef}>
         {NavItems.map(({ to, label }) => (
           <StyledListItem key={to}>
-            <StyledNavLink to={to}>{label}</StyledNavLink>
+            {to.includes('#') ? (
+              <StyledNavLink as={AnchorLink} to={to}>
+                {label}
+              </StyledNavLink>
+            ) : (
+              <StyledNavLink to={to}>{label}</StyledNavLink>
+            )}
           </StyledListItem>
         ))}
       </StyledList>

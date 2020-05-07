@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
+import { AnchorLink } from 'gatsby-plugin-anchor-links';
 
 const StyledWrapper = styled(Link)`
   padding: 1.2em 3em;
@@ -17,11 +18,20 @@ const StyledWrapper = styled(Link)`
   align-items: center;
 `;
 
-const Button = ({ children, to, secondary }) => (
-  <StyledWrapper to={to} secondary={secondary ? 1 : undefined}>
-    {children}
-  </StyledWrapper>
-);
+const Button = ({ children, to, secondary }) =>
+  to.includes('#') ? (
+    <StyledWrapper
+      as={AnchorLink}
+      to={to}
+      secondary={secondary ? 1 : undefined}
+    >
+      {children}
+    </StyledWrapper>
+  ) : (
+    <StyledWrapper to={to} secondary={secondary ? 1 : undefined}>
+      {children}
+    </StyledWrapper>
+  );
 
 Button.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,

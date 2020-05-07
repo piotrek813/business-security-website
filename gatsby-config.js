@@ -1,4 +1,5 @@
 const path = require('path');
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
@@ -60,6 +61,18 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`,
+      },
+    },
+    {
+      resolve: `gatsby-source-datocms`,
+      options: {
+        apiToken: process.env.DATO_API_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-anchor-links`,
+      options: {
+        offset: 300,
       },
     },
   ],

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -17,11 +19,11 @@ const StyledWrapper = styled.section`
   `}
 `;
 
-const ContactPage = () => (
+const ContactPage = ({ data: { datoCmsContact } }) => (
   <MainTemplate
     hero={{
-      heading: 'Kontakt',
-      paragraph: '',
+      heading: datoCmsContact.heading,
+      paragraph: datoCmsContact.subtitle,
       buttons: [{ to: '/#services', label: 'Moja oferta' }],
     }}
   >
@@ -33,10 +35,27 @@ const ContactPage = () => (
         varius volutpat habitant amet lectus tempor cursus id convallis duis in
         tellus purus
       </P>
-      <ContactItem icon={faEnvelope} info="exaple@gmail.com" />
-      <ContactItem icon={faPhone} info="+48 784 312 123" />
+      <ContactItem icon={faEnvelope} info={datoCmsContact.phone} />
+      {datoCmsContact.email && (
+        <ContactItem icon={faPhone} info={datoCmsContact.email} />
+      )}
     </StyledWrapper>
   </MainTemplate>
 );
+
+export const query = graphql`
+  query ContactQuery {
+    datoCmsContact {
+      heading
+      subtitle
+      phone
+      email
+    }
+  }
+`;
+
+ContactPage.propTypes = {
+  data: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default ContactPage;

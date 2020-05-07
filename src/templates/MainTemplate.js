@@ -1,6 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import theme from 'utils/theme';
 import GlobalStyle from 'components/GlobalStyle';
 import HeaderTemplate from 'templates/HeaderTemplate';
@@ -8,9 +10,20 @@ import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 
 const MainTemplate = ({ hero, children }) => {
+  const { datoCmsHome } = useStaticQuery(graphql`
+    query {
+      datoCmsHome {
+        seoMetaTags {
+          ...GatsbyDatoCmsSeoMetaTags
+        }
+      }
+    }
+  `);
+
   return (
     <ThemeProvider theme={theme}>
       <>
+        <HelmetDatoCms seo={datoCmsHome.seoMetaTags} />
         <GlobalStyle />
         <Navbar />
         <HeaderTemplate {...hero} />
@@ -28,7 +41,11 @@ MainTemplate.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
-  ]).isRequired,
+  ]),
+};
+
+MainTemplate.defaultProps = {
+  children: [],
 };
 
 export default MainTemplate;
