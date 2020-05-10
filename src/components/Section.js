@@ -69,7 +69,7 @@ const Section = ({
       isPadding={isPadding}
       image={image}
     >
-      {console.log(image)}
+      {console.log(paragraph)}
       {image !== {} && (
         <Image
           fluid={image.fluid}
@@ -82,6 +82,7 @@ const Section = ({
         {heading !== '' && <H2 bgColor={background}>{heading}</H2>}
         {paragraph !== '' && paragraph.childMarkdownRemark ? (
           <P
+            as="div"
             dangerouslySetInnerHTML={{
               __html: paragraph.childMarkdownRemark.html,
             }}
