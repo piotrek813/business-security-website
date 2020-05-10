@@ -13,7 +13,7 @@ const StyledWrapper = styled(Link)`
   color: ${({ theme }) => theme.white};
   font-size: 16px;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
 `;

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import MainTemplate from 'templates/MainTemplate';
+import Section from 'components/Section';
+import SectionGroup from 'components/SectionGroup';
 import PostGroup from 'components/PostGroup';
 import PostReference from 'components/PostReference';
-import renderSections from 'utils/renderSections';
 
-const IndexPage = ({ data: { datoCmsHome } }) => (
+const IndexPage = ({ data: { datoCmsHome, allDatoCmsService } }) => (
   <MainTemplate
     hero={{
       heading: datoCmsHome.heading,
@@ -14,7 +15,21 @@ const IndexPage = ({ data: { datoCmsHome } }) => (
     }}
   >
     <div id="services" />
-    {renderSections(datoCmsHome.content)}
+    <SectionGroup>
+      {allDatoCmsService.edges.map(
+        ({ node: { id, heading, textHomePageNode, content, slug } }, index) => (
+          <Section
+            key={id}
+            isMirror={index % 2 !== 0}
+            image={`https://source.unsplash.com/300x30${index}/?business`}
+            heading={heading}
+            paragraph={textHomePageNode}
+            buttonLink={content !== '' ? slug : ''}
+          />
+        )
+      )}
+    </SectionGroup>
+
     <PostGroup heading="Blog">
       <PostReference
         heading="Outsourcing funkcji i zadań IOD"
@@ -55,31 +70,19 @@ export const query = graphql`
     datoCmsHome {
       heading
       subtitle
-
-      content {
-        ... on DatoCmsSectionWithImage {
-          heading
-          text
+    }
+    allDatoCmsService {
+      edges {
+        node {
           id
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsSectionWithoutImageCenter {
+          slug
           heading
-          text
-          id
-          model {
-            apiKey
+          textHomePageNode {
+            childMarkdownRemark {
+              html
+            }
           }
-        }
-        ... on DatoCmsSectionWithoutImage {
-          heading
-          text
-          id
-          model {
-            apiKey
-          }
+          content
         }
       }
     }

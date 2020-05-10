@@ -5,6 +5,7 @@ import media from 'utils/media';
 import H2 from 'components/SectionHeading';
 import P from 'components/SectionParagraph';
 import Image from 'components/SectionImg';
+import Button from 'components/Button';
 
 const StyledSection = styled.section`
   background: ${({ theme, bgColor }) =>
@@ -56,6 +57,7 @@ const Section = ({
   isCenter,
   bgColor,
   isPadding,
+  buttonLink,
 }) => {
   const background = isPadding ? bgColor : 'none';
 
@@ -70,7 +72,20 @@ const Section = ({
       {image !== '' && <Image src={image} alt={image} isMirror={isMirror} />}
       <StyledContent>
         {heading !== '' && <H2 bgColor={background}>{heading}</H2>}
-        {paragraph !== '' && <P>{paragraph}</P>}
+        {paragraph !== '' && paragraph.childMarkdownRemark ? (
+          <P
+            dangerouslySetInnerHTML={{
+              __html: paragraph.childMarkdownRemark.html,
+            }}
+          />
+        ) : (
+          <P>{paragraph}</P>
+        )}
+        {buttonLink !== '' && (
+          <Button to={buttonLink} isSmall>
+            Czytaj dalej
+          </Button>
+        )}
       </StyledContent>
     </StyledSection>
   );
@@ -78,12 +93,16 @@ const Section = ({
 
 Section.propTypes = {
   heading: PropTypes.string,
-  paragraph: PropTypes.string,
+  paragraph: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.object),
+  ]),
   image: PropTypes.string,
   isMirror: PropTypes.bool,
   isCenter: PropTypes.bool,
   bgColor: PropTypes.oneOf(['dark', 'gray', 'none']),
   isPadding: PropTypes.bool,
+  buttonLink: PropTypes.string,
 };
 
 Section.defaultProps = {
@@ -94,6 +113,7 @@ Section.defaultProps = {
   isCenter: false,
   bgColor: 'none',
   isPadding: false,
+  buttonLink: '',
 };
 
 export default Section;

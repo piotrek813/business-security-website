@@ -24,7 +24,11 @@ export const query = graphql`
       content {
         ... on DatoCmsSectionWithImage {
           heading
-          text
+          textNode {
+            childMarkdownRemark {
+              html
+            }
+          }
           id
           model {
             apiKey
@@ -40,7 +44,11 @@ export const query = graphql`
         }
         ... on DatoCmsSectionWithoutImage {
           heading
-          text
+          textNode {
+            childMarkdownRemark {
+              html
+            }
+          }
           id
           model {
             apiKey

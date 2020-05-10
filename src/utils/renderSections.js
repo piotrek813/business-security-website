@@ -17,7 +17,7 @@ const renderSections = (data) => {
           isMirror={i % 2 === 0}
           image={`https://source.unsplash.com/300x30${i}/?business`}
           heading={item.heading}
-          paragraph={item.text}
+          paragraph={item.textNode}
         />
       );
       if (
@@ -43,7 +43,11 @@ const renderSections = (data) => {
     } else if (data[i].model.apiKey === 'section_without_image') {
       const item = data[i];
       block.push(
-        <Section key={item.id} heading={item.heading} paragraph={item.text} />
+        <Section
+          key={item.id}
+          heading={item.heading}
+          paragraph={item.textNode}
+        />
       );
       if (
         (data[i + 1] && data[i + 1].model.apiKey !== 'section_without_image') ||

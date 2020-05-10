@@ -21,13 +21,10 @@ const StyledWrapper = styled.section`
   ${media.big`
       padding: ${({ theme }) => theme.padding.big};
       ${({ isSmallGap }) =>
-        isSmallGap
-          ? css`
-              grid-gap: 27px;
-            `
-          : css`
-              grid-auto-rows: 800px;
-            `};
+        isSmallGap &&
+        css`
+          grid-gap: 27px;
+        `}
   `}
 `;
 

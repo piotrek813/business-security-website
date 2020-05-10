@@ -2,7 +2,7 @@ export default {
   primary: '#1589C9',
   darkenPrimary: '#597793',
   secondary: '#131C21',
-  gray: '#FAFAFA',
+  gray: '#FBFBFB',
   white: '#FFFFFF',
   black: '#000000',
   fontFamily: 'Open Sans, sans-serif',
