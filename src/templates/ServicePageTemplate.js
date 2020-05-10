@@ -1,28 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
+import { graphql } from 'gatsby';
 
 const Article = styled.article`
-  width: 70%;
-  margin: auto;
-
   padding: ${({ theme }) => theme.padding.normal};
 
-  ${media.medium`
+  ${media.small`
       padding: ${({ theme }) => theme.padding.medium};
       font-size: 18px;
+      width: 80%;
+      margin: auto;
   `}
 
   ${media.big`
       padding: ${({ theme }) => theme.padding.big};
       font-size: 20px;
+      width: 75%;
   `}
 `;
 
-const ServicePageTemplate = ({ pageContext }) => (
+const ServicePageTemplate = ({ pageContext, data: { datoCmsService } }) => (
   <MainTemplate hero={{ heading: pageContext.heading, paragraph: '' }}>
+    <HelmetDatoCms seo={datoCmsService.seoMetaTags} />
     <Article
       dangerouslySetInnerHTML={{
         __html: pageContext.content.childMarkdownRemark.html,
@@ -31,10 +34,21 @@ const ServicePageTemplate = ({ pageContext }) => (
   </MainTemplate>
 );
 
+export const query = graphql`
+  query PostQuery($slug: String!) {
+    datoCmsService(slug: { eq: $slug }) {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+    }
+  }
+`;
+
 ServicePageTemplate.propTypes = {
   pageContext: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.object])
   ).isRequired,
+  data: PropTypes.objectOf(PropTypes.object).isRequired,
 };
 
 export default ServicePageTemplate;

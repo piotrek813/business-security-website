@@ -1,5 +1,7 @@
 import React from 'react';
+// import { graphql } from 'gatsby';
 import MainTemplate from 'templates/MainTemplate';
+// import { HelmetDatoCms } from 'gatsby-source-datocms';
 import PostGroup from 'components/PostGroup';
 import PostReference from 'components/PostReference';
 
@@ -75,5 +77,15 @@ const BlogPage = () => (
     </PostGroup>
   </MainTemplate>
 );
+
+// export const query = graphql`
+//   query ContactQuery {
+//     datoCmsBlog {
+//       seoMetaTags {
+//         ...GatsbyDatoCmsSeoMetaTags
+//       }
+//     }
+//   }
+// `;
 
 export default BlogPage;

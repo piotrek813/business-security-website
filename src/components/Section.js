@@ -69,8 +69,7 @@ const Section = ({
       isPadding={isPadding}
       image={image}
     >
-      {console.log(paragraph)}
-      {image !== {} && (
+      {image && (
         <Image
           fluid={image.fluid}
           alt={image.alt}
@@ -117,7 +116,7 @@ Section.propTypes = {
 Section.defaultProps = {
   heading: '',
   paragraph: '',
-  image: {},
+  image: undefined,
   isMirror: false,
   isCenter: false,
   bgColor: 'none',

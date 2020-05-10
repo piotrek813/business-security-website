@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import MainTemplate from 'templates/MainTemplate';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import renderSetions from 'utils/renderSections';
 
 const AboutMePage = ({ data: { datoCmsAboutMe } }) => (
@@ -11,6 +12,7 @@ const AboutMePage = ({ data: { datoCmsAboutMe } }) => (
       paragraph: datoCmsAboutMe.subtitle,
     }}
   >
+    <HelmetDatoCms seo={datoCmsAboutMe.seoMetaTags} />
     {renderSetions(datoCmsAboutMe.content)}
   </MainTemplate>
 );
@@ -18,11 +20,22 @@ const AboutMePage = ({ data: { datoCmsAboutMe } }) => (
 export const query = graphql`
   query AboutMeQuery {
     datoCmsAboutMe {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+
       heading
       subtitle
 
       content {
         ... on DatoCmsSectionWithImage {
+          image {
+            fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFluid_noBase64
+            }
+            title
+            alt
+          }
           heading
           textNode {
             childMarkdownRemark {

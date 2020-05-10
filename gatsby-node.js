@@ -4,7 +4,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const services = await graphql(`
     query {
-      allDatoCmsService {
+      allDatoCmsService(filter: { content: { ne: "" } }) {
         edges {
           node {
             slug

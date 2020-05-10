@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import H2 from 'components/SectionHeading';
 import P from 'components/SectionParagraph';
@@ -27,6 +28,7 @@ const ContactPage = ({ data: { datoCmsContact } }) => (
       buttons: [{ to: '/#services', label: 'Moja oferta' }],
     }}
   >
+    <HelmetDatoCms seo={datoCmsContact.seoMetaTags} />
     <StyledWrapper>
       <H2>Lorem ipsum dolor sit ament</H2>
       <P>
@@ -46,6 +48,9 @@ const ContactPage = ({ data: { datoCmsContact } }) => (
 export const query = graphql`
   query ContactQuery {
     datoCmsContact {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
       heading
       subtitle
       phone

@@ -15,7 +15,7 @@ const renderSections = (data) => {
         <Section
           key={item.id}
           isMirror={i % 2 === 0}
-          image={`https://source.unsplash.com/300x30${i}/?business`}
+          image={item.image}
           heading={item.heading}
           paragraph={item.textNode}
         />
