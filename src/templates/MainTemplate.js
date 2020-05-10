@@ -16,6 +16,11 @@ const MainTemplate = ({ hero, children }) => {
         seoMetaTags {
           ...GatsbyDatoCmsSeoMetaTags
         }
+        hero {
+          fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
+            ...GatsbyDatoCmsFluid_noBase64
+          }
+        }
       }
     }
   `);
@@ -26,7 +31,7 @@ const MainTemplate = ({ hero, children }) => {
         <HelmetDatoCms seo={datoCmsHome.seoMetaTags} />
         <GlobalStyle />
         <Navbar />
-        <HeaderTemplate {...hero} />
+        <HeaderTemplate heroImage={datoCmsHome.hero} {...hero} />
         <main>{children}</main>
         <Footer />
       </>

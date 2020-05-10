@@ -76,9 +76,9 @@ const Actions = styled.div`
     `}
 `;
 
-const HeaderTemplate = ({ heading, paragraph, buttons }) => (
+const HeaderTemplate = ({ heading, paragraph, buttons, heroImage }) => (
   <StyledWrapper>
-    <Hero />
+    <Hero image={heroImage} />
     <StyledContent>
       <H1>{heading}</H1>
       {paragraph !== '' && <P>{paragraph}</P>}
@@ -102,6 +102,7 @@ const HeaderTemplate = ({ heading, paragraph, buttons }) => (
   </StyledWrapper>
 );
 HeaderTemplate.propTypes = {
+  heroImage: PropTypes.objectOf(PropTypes.object).isRequired,
   heading: PropTypes.string.isRequired,
   paragraph: PropTypes.string.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.object),

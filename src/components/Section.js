@@ -69,7 +69,15 @@ const Section = ({
       isPadding={isPadding}
       image={image}
     >
-      {image !== '' && <Image src={image} alt={image} isMirror={isMirror} />}
+      {console.log(image)}
+      {image !== {} && (
+        <Image
+          fluid={image.fluid}
+          alt={image.alt}
+          title={image.title}
+          isMirror={isMirror}
+        />
+      )}
       <StyledContent>
         {heading !== '' && <H2 bgColor={background}>{heading}</H2>}
         {paragraph !== '' && paragraph.childMarkdownRemark ? (
@@ -97,7 +105,7 @@ Section.propTypes = {
     PropTypes.string,
     PropTypes.objectOf(PropTypes.object),
   ]),
-  image: PropTypes.string,
+  image: PropTypes.objectOf(PropTypes.object),
   isMirror: PropTypes.bool,
   isCenter: PropTypes.bool,
   bgColor: PropTypes.oneOf(['dark', 'gray', 'none']),
@@ -108,7 +116,7 @@ Section.propTypes = {
 Section.defaultProps = {
   heading: '',
   paragraph: '',
-  image: '',
+  image: {},
   isMirror: false,
   isCenter: false,
   bgColor: 'none',

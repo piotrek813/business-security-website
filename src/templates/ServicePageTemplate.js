@@ -5,6 +5,9 @@ import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
 
 const Article = styled.article`
+  width: 70%;
+  margin: auto;
+
   padding: ${({ theme }) => theme.padding.normal};
 
   ${media.medium`

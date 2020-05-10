@@ -17,14 +17,17 @@ const IndexPage = ({ data: { datoCmsHome, allDatoCmsService } }) => (
     <div id="services" />
     <SectionGroup>
       {allDatoCmsService.edges.map(
-        ({ node: { id, heading, textHomePageNode, content, slug } }, index) => (
+        (
+          { node: { id, image, heading, textHomePageNode, content, slug } },
+          index
+        ) => (
           <Section
             key={id}
             isMirror={index % 2 !== 0}
-            image={`https://source.unsplash.com/300x30${index}/?business`}
+            image={image}
             heading={heading}
             paragraph={textHomePageNode}
-            buttonLink={content !== '' ? slug : ''}
+            buttonLink={content !== '' ? `/${slug}` : ''}
           />
         )
       )}
@@ -71,11 +74,18 @@ export const query = graphql`
       heading
       subtitle
     }
-    allDatoCmsService {
+    allDatoCmsService(sort: { fields: position }) {
       edges {
         node {
           id
           slug
+          image {
+            fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFluid_noBase64
+            }
+            title
+            alt
+          }
           heading
           textHomePageNode {
             childMarkdownRemark {

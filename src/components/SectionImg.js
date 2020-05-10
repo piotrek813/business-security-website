@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import media from 'utils/media';
+import Img from 'gatsby-image';
 
-const Img = styled.img`
+const Image = styled(Img)`
   width: 100%;
   height: 235px;
   object-fit: cover;
@@ -19,12 +20,8 @@ const Img = styled.img`
   `}
 
   ${media.medium`
-      height: auto;
-  `}
-
-  ${media.big`
-      height: 100%;
+      min-height: 700px;
   `}
 `;
 
-export default Img;
+export default Image;
