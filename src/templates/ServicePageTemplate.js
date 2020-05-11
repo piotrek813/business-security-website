@@ -35,7 +35,7 @@ const ServicePageTemplate = ({ pageContext, data: { datoCmsService } }) => (
 );
 
 export const query = graphql`
-  query PostQuery($slug: String!) {
+  query ServiceQuery($slug: String!) {
     datoCmsService(slug: { eq: $slug }) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

@@ -33,4 +33,39 @@ exports.createPages = async ({ graphql, actions }) => {
       });
     }
   });
+
+  const posts = await graphql(`
+    query {
+      allDatoCmsPost {
+        edges {
+          node {
+            slug
+            heading
+            contentNode {
+              childMarkdownRemark {
+                html
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  posts.data.allDatoCmsPost.edges.forEach(
+    ({ node: { slug, hero, heading, contentNode } }) => {
+      if (contentNode.childMarkdownRemark.html !== '') {
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/PostTemplate.js'),
+          context: {
+            slug,
+            hero,
+            heading,
+            content: contentNode,
+          },
+        });
+      }
+    }
+  );
 };

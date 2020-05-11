@@ -12,6 +12,8 @@ const StyledWrapper = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: ${({ theme }) => theme.primary};
+  z-index: -1;
 `;
 
 const StyledContent = styled.section`

@@ -7,7 +7,9 @@ import SectionGroup from 'components/SectionGroup';
 import PostGroup from 'components/PostGroup';
 import PostReference from 'components/PostReference';
 
-const IndexPage = ({ data: { datoCmsHome, allDatoCmsService } }) => (
+const IndexPage = ({
+  data: { datoCmsHome, allDatoCmsService, allDatoCmsPost },
+}) => (
   <MainTemplate
     hero={{
       heading: datoCmsHome.heading,
@@ -34,36 +36,17 @@ const IndexPage = ({ data: { datoCmsHome, allDatoCmsService } }) => (
     </SectionGroup>
 
     <PostGroup heading="Blog">
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x303/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x304/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x305/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x306/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x307/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/300x308/?business"
-      />
+      {allDatoCmsPost.edges.map(
+        ({ node: { slug, hero, heading, content } }) => (
+          <PostReference
+            key={slug}
+            slug={`/${slug}`}
+            image={hero}
+            heading={heading}
+            paragraph={content.substr(0, 200)}
+          />
+        )
+      )}
     </PostGroup>
   </MainTemplate>
 );
@@ -93,6 +76,20 @@ export const query = graphql`
             }
           }
           content
+        }
+      }
+    }
+    allDatoCmsPost(limit: 4) {
+      edges {
+        node {
+          slug
+          heading
+          content
+          hero {
+            fluid(maxWidth: 200, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFluid_noBase64
+            }
+          }
         }
       }
     }

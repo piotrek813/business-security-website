@@ -1,91 +1,71 @@
 import React from 'react';
-// import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 import MainTemplate from 'templates/MainTemplate';
-// import { HelmetDatoCms } from 'gatsby-source-datocms';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 import PostGroup from 'components/PostGroup';
 import PostReference from 'components/PostReference';
 
-const BlogPage = () => (
-  <MainTemplate hero={{ heading: 'Blog', paragraph: '' }}>
-    <PostReference
-      isBig
-      heading="Najnowszy post"
-      paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-      image="https://source.unsplash.com/300x300/?business"
-    />
-    <PostGroup>
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x200/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x201/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x202/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x202/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x205/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x209/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x212/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x202/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/200x210/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/201x200/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/220x200/?business"
-      />
-      <PostReference
-        heading="Outsourcing funkcji i zadań IOD"
-        paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus in ornare quam viverra"
-        image="https://source.unsplash.com/210x200/?business"
-      />
-    </PostGroup>
-  </MainTemplate>
-);
+const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
+  const { node: firstPost } = allDatoCmsPost.edges.shift();
 
-// export const query = graphql`
-//   query ContactQuery {
-//     datoCmsBlog {
-//       seoMetaTags {
-//         ...GatsbyDatoCmsSeoMetaTags
-//       }
-//     }
-//   }
-// `;
+  return (
+    <MainTemplate
+      hero={{ heading: datoCmsBlog.heading, paragraph: datoCmsBlog.subtitle }}
+    >
+      <HelmetDatoCms seo={datoCmsBlog.seoMetaTags} />
+      <PostReference
+        isBig
+        slug={`/${firstPost.slug}`}
+        image={firstPost.hero}
+        heading={firstPost.heading}
+        paragraph={firstPost.content.substr(0, 200)}
+      />
+      <PostGroup heading="Blog">
+        {allDatoCmsPost.edges.map(
+          ({ node: { slug, hero, heading, content } }) => (
+            <PostReference
+              key={slug}
+              slug={`/${slug}`}
+              image={hero}
+              heading={heading}
+              paragraph={content.substr(0, 200)}
+            />
+          )
+        )}
+      </PostGroup>
+    </MainTemplate>
+  );
+};
+
+BlogPage.propTypes = {
+  data: PropTypes.objectOf(PropTypes.object).isRequired,
+};
+
+export const query = graphql`
+  query BlogQuery {
+    datoCmsBlog {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      heading
+      subtitle
+    }
+    allDatoCmsPost {
+      edges {
+        node {
+          slug
+          heading
+          content
+          hero {
+            fluid(maxWidth: 200, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFluid_noBase64
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default BlogPage;

@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import media from 'utils/media';
+import { Link } from 'gatsby';
+import Img from 'gatsby-image';
 
 const StyledWrapper = styled.article`
   display: grid;
@@ -13,7 +15,6 @@ const StyledWrapper = styled.article`
       ${media.small`
         grid-template-rows: auto;
         grid-template-columns: 1fr 1fr;
-        height: 530px;
       `}
 
       padding: ${theme.padding.normal};
@@ -68,26 +69,34 @@ const P = styled.p`
     `}
 `;
 
-const Img = styled.img`
-  height: 100%;
-  width: 100%;
+const Image = styled(Img)`
+  max-width: 100%;
+  height: 530px;
   object-fit: cover;
 `;
 
-const PostReference = ({ heading, paragraph, image, isBig }) => (
+const StyledLink = styled(Link)`
+  color: inherit;
+  text-decoration: none;
+`;
+
+const PostReference = ({ slug, heading, paragraph, image, isBig }) => (
   <StyledWrapper isBig={isBig}>
-    <Img src={image} alt={image} />
+    <Image fluid={image.fluid} alt={image.alt} title={image.title} />
     <StyledContent isBig={isBig}>
-      <H3 isBig={isBig}>{heading}</H3>
+      <StyledLink to={slug}>
+        <H3 isBig={isBig}>{heading}</H3>
+      </StyledLink>
       <P isBig={isBig}>{paragraph}</P>
     </StyledContent>
   </StyledWrapper>
 );
 
 PostReference.propTypes = {
+  slug: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   paragraph: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.objectOf(PropTypes.object).isRequired,
   isBig: PropTypes.bool,
 };
 

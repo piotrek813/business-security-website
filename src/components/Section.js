@@ -105,7 +105,9 @@ Section.propTypes = {
     PropTypes.string,
     PropTypes.objectOf(PropTypes.object),
   ]),
-  image: PropTypes.objectOf(PropTypes.object),
+  image: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.string])
+  ),
   isMirror: PropTypes.bool,
   isCenter: PropTypes.bool,
   bgColor: PropTypes.oneOf(['dark', 'gray', 'none']),
