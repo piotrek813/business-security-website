@@ -51,7 +51,7 @@ export const query = graphql`
       heading
       subtitle
     }
-    allDatoCmsPost {
+    allDatoCmsPost(sort: { fields: meta___publishedAt, order: ASC }) {
       edges {
         node {
           slug

@@ -71,7 +71,7 @@ const P = styled.p`
 
 const Image = styled(Img)`
   max-width: 100%;
-  height: 530px;
+  height: ${({ isBig }) => (isBig ? '530px' : '100%')};
   object-fit: cover;
 `;
 
@@ -82,7 +82,9 @@ const StyledLink = styled(Link)`
 
 const PostReference = ({ slug, heading, paragraph, image, isBig }) => (
   <StyledWrapper isBig={isBig}>
-    <Image fluid={image.fluid} alt={image.alt} title={image.title} />
+    <Link to={slug}>
+      <Image fluid={image.fluid} alt={image.alt} title={image.title} />
+    </Link>
     <StyledContent isBig={isBig}>
       <StyledLink to={slug}>
         <H3 isBig={isBig}>{heading}</H3>
