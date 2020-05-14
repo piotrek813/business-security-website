@@ -109,6 +109,7 @@ const Navbar = () => {
   const navbarRef = useRef(null);
 
   const NavItems = [
+    { to: '/', label: 'Home' },
     { to: '/o-mnie', label: 'O mnie' },
     { to: '/#services', label: 'Oferta' },
     { to: '/blog', label: 'Blog' },
@@ -139,7 +140,7 @@ const Navbar = () => {
 
   return (
     <StyledNav>
-      <StyledLogo to="/">SomeCompany</StyledLogo>
+      <StyledLogo to="/">Piotr Calinski</StyledLogo>
       <StyledHamburger isOpen={isMenuOpen} onClick={handleHamburgerClick} />
       <StyledList isOpen={isMenuOpen} ref={navbarRef}>
         {NavItems.map(({ to, label }) => (
