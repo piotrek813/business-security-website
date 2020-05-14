@@ -10,7 +10,7 @@ const StyledWrapper = styled(Link)`
   box-shadow: ${({ theme, secondary }) =>
     secondary ? `inset 0 0 0 4px ${theme.primary}` : 'none'};
   border-radius: 4px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.white} !important;
   font-size: 16px;
   text-decoration: none;
   display: inline-flex;

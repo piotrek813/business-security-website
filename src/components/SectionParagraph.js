@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import media from 'utils/media';
 
 const P = styled.p`
-  margin: 2px 0 0 0;
+  margin: 2px 0 10px 0;
 
   ${media.medium`
       font-size: 18px;

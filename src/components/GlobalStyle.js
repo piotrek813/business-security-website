@@ -20,8 +20,15 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  ul, ol {
-    margin: 0;
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.primary};
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    transition: .2s color;
+
+    &:hover {
+      color: ${({ theme }) => theme.secondary};
+    }
   }
 `;
 

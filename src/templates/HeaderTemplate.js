@@ -12,8 +12,6 @@ const StyledWrapper = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${({ theme }) => theme.primary};
-  z-index: -1;
 `;
 
 const StyledContent = styled.section`
@@ -68,6 +66,7 @@ const Actions = styled.div`
   display: grid;
   grid-auto-columns: 1fr;
   grid-gap: 5px;
+  z-index: 9998;
 
   ${({ isOne }) =>
     !isOne &&

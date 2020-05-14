@@ -79,14 +79,17 @@ export const query = graphql`
         }
       }
     }
-    allDatoCmsPost(limit: 4) {
+    allDatoCmsPost(
+      limit: 4
+      sort: { fields: meta___publishedAt, order: DESC }
+    ) {
       edges {
         node {
           slug
           heading
           content
           hero {
-            fluid(maxWidth: 200, imgixParams: { fm: "jpg", auto: "compress" }) {
+            fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsFluid_noBase64
             }
           }

@@ -14,6 +14,6 @@ export default {
   padding: {
     normal: '49px 27px',
     medium: '54px 70px',
-    big: '63px 185px',
+    big: '63px 250px',
   },
 };

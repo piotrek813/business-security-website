@@ -14,6 +14,7 @@ const StyledImg = styled(Img)`
           width: 100%;
           z-index: -1;
           height: 100vh;
+          background: ${({ theme }) => theme.secondary};
         `
       : css`
           position: relative !important;

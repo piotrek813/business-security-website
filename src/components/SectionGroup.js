@@ -6,6 +6,7 @@ import media from 'utils/media';
 const StyledWrapper = styled.section`
   padding: ${({ theme }) => theme.padding.normal};
   display: grid;
+  grid-template-rows: 1fr;
   grid-gap: ${({ isSmallGap }) => (isSmallGap ? '20px' : '88px')};
   background: ${({ theme, bgColor }) =>
     bgColor === 'gray'

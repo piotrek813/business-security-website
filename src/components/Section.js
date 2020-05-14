@@ -43,9 +43,14 @@ const StyledSection = styled.section`
           grid-gap: 53px;
       `}
     `}
+
+  p, ul, ol {
+    margin: 8px 0;
+  }
 `;
 
 const StyledContent = styled.div`
+  width: 100%;
   margin: auto;
 `;
 
@@ -91,7 +96,7 @@ const Section = ({
         )}
         {buttonLink !== '' && (
           <Button to={buttonLink} isSmall>
-            Czytaj dalej
+            Oferta
           </Button>
         )}
       </StyledContent>

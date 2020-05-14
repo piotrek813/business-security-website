@@ -7,7 +7,7 @@ import PostGroup from 'components/PostGroup';
 import PostReference from 'components/PostReference';
 
 const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
-  const { node: firstPost } = allDatoCmsPost.edges.shift();
+  const { node: firstPost } = allDatoCmsPost.edges[0];
 
   return (
     <MainTemplate
@@ -23,15 +23,16 @@ const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
       />
       <PostGroup heading="Blog">
         {allDatoCmsPost.edges.map(
-          ({ node: { slug, hero, heading, content } }) => (
-            <PostReference
-              key={slug}
-              slug={`/${slug}`}
-              image={hero}
-              heading={heading}
-              paragraph={content.substr(0, 200)}
-            />
-          )
+          ({ node: { slug, hero, heading, content } }, index) =>
+            index !== 0 && (
+              <PostReference
+                key={slug}
+                slug={`/${slug}`}
+                image={hero}
+                heading={heading}
+                paragraph={content.substr(0, 200)}
+              />
+            )
         )}
       </PostGroup>
     </MainTemplate>
@@ -51,14 +52,14 @@ export const query = graphql`
       heading
       subtitle
     }
-    allDatoCmsPost(sort: { fields: meta___publishedAt, order: ASC }) {
+    allDatoCmsPost(sort: { fields: meta___publishedAt, order: DESC }) {
       edges {
         node {
           slug
           heading
           content
           hero {
-            fluid(maxWidth: 200, imgixParams: { fm: "jpg", auto: "compress" }) {
+            fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsFluid_noBase64
             }
           }

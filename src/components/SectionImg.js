@@ -16,11 +16,11 @@ const Image = styled(Img)`
     `}
 
   ${media.small`
-      height: 320px;
+      min-height: 250px;
   `}
 
   ${media.medium`
-      min-height: 700px;
+      min-height: 450px;
   `}
 `;
 

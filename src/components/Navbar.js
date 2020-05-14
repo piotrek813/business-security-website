@@ -73,12 +73,12 @@ const StyledListItem = styled.li`
 `;
 
 const StyledLogo = styled(Link)`
-  color: inherit;
+  color: ${({ theme }) => theme.white} !important;
   text-decoration: none;
 `;
 
 const StyledNavLink = styled(Link)`
-  color: inherit;
+  color: ${({ theme }) => theme.white} !important;
   text-decoration: none;
 
   ${media.small`

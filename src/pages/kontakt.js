@@ -5,13 +5,11 @@ import { graphql } from 'gatsby';
 import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
-import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import H2 from 'components/SectionHeading';
 import P from 'components/SectionParagraph';
-import ContactItem from 'components/ContactItem';
 
 const StyledWrapper = styled.section`
-  text-align: center;
+  text-align: left;
   padding: ${({ theme }) => theme.padding.normal};
 
   ${media.small`
@@ -31,16 +29,13 @@ const ContactPage = ({ data: { datoCmsContact } }) => (
     <HelmetDatoCms seo={datoCmsContact.seoMetaTags} />
     <StyledWrapper>
       <H2>Lorem ipsum dolor sit ament</H2>
-      <P>
-        Nulla odio nibh fermentum orci nisi eu lobortis ultrices vel, facilisis
-        magna eu pretium enim adipiscing adipiscing libero eget consequat orci
-        varius volutpat habitant amet lectus tempor cursus id convallis duis in
-        tellus purus
-      </P>
-      <ContactItem icon={faEnvelope} info={datoCmsContact.phone} />
-      {datoCmsContact.email && (
-        <ContactItem icon={faPhone} info={datoCmsContact.email} />
-      )}
+      {console.log(datoCmsContact)}
+      <P
+        as="div"
+        dangerouslySetInnerHTML={{
+          __html: datoCmsContact.contactDataNode.childMarkdownRemark.html,
+        }}
+      />
     </StyledWrapper>
   </MainTemplate>
 );
@@ -53,8 +48,11 @@ export const query = graphql`
       }
       heading
       subtitle
-      phone
-      email
+      contactDataNode {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `;
