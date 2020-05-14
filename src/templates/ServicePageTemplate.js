@@ -32,8 +32,7 @@ const Article = styled.article`
   }
 
   ul,
-  ol,
-  p {
+  ol {
     margin: 0 0 7px 0;
   }
 `;

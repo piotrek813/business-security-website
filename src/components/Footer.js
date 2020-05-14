@@ -72,7 +72,7 @@ const Blog = styled.div`
   `}
 
   ${media.big`
-      grid-template-columns: 1fr 1fr
+      grid-template-columns: 1fr 1fr;
   `}
 `;
 

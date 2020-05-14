@@ -78,6 +78,7 @@ const Image = styled(Img)`
 const StyledLink = styled(Link)`
   color: inherit;
   text-decoration: none;
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
 `;
 
 const PostReference = ({ slug, heading, paragraph, image, isBig }) => (
@@ -88,8 +89,8 @@ const PostReference = ({ slug, heading, paragraph, image, isBig }) => (
     <StyledContent isBig={isBig}>
       <StyledLink to={slug}>
         <H3 isBig={isBig}>{heading}</H3>
+        <P isBig={isBig}>{paragraph}</P>
       </StyledLink>
-      <P isBig={isBig}>{paragraph}</P>
     </StyledContent>
   </StyledWrapper>
 );

@@ -20,7 +20,7 @@ const Image = styled(Img)`
   `}
 
   ${media.medium`
-      min-height: 450px;
+      min-height: ${({ isMuchText }) => (!isMuchText ? '450px' : '100%')};
   `}
 `;
 

@@ -1,5 +1,10 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'gatsby';
+
+const Ul = styled.ul`
+  list-style-type: none;
+`;
 
 const toList = (data = '', isBlogPosts = false) => {
   const lines = typeof data === 'string' ? data.split('\n') : data;
@@ -19,20 +24,20 @@ const toList = (data = '', isBlogPosts = false) => {
   const chunkedArray = isBlogPosts ? chunkArray(lines, 4) : lines;
   return isBlogPosts ? (
     chunkedArray.map((item) => (
-      <ul key={item}>
+      <Ul key={item}>
         {item.map(({ label, to }) => (
           <li key={label}>
             <Link to={to}>{label}</Link>
           </li>
         ))}
-      </ul>
+      </Ul>
     ))
   ) : (
-    <ul>
+    <Ul>
       {lines.map((line) => (
         <li key={line}>{line}</li>
       ))}
-    </ul>
+    </Ul>
   );
 };
 

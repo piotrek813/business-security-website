@@ -2,7 +2,7 @@ import React from 'react';
 import Section from 'components/Section';
 import SectionGroup from 'components/SectionGroup';
 
-const renderSections = (data) => {
+const renderSections = (data, params) => {
   const toRender = [];
   let block = [];
   let key = '';
@@ -13,6 +13,7 @@ const renderSections = (data) => {
       const item = data[i];
       block.push(
         <Section
+          {...params}
           key={item.id}
           isMirror={i % 2 === 0}
           image={item.image}

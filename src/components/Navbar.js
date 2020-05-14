@@ -78,11 +78,12 @@ const StyledLogo = styled(Link)`
 `;
 
 const StyledNavLink = styled(Link)`
-  color: ${({ theme }) => theme.white} !important;
+  color: ${({ theme }) => theme.black} !important;
   text-decoration: none;
 
   ${media.small`
     position: relative;
+    color: ${({ theme }) => theme.white} !important;
 
     &::before {
       content: '';

@@ -62,6 +62,7 @@ const Section = ({
   isCenter,
   bgColor,
   isPadding,
+  isMuchText,
   buttonLink,
 }) => {
   const background = isPadding ? bgColor : 'none';
@@ -76,6 +77,7 @@ const Section = ({
     >
       {image && (
         <Image
+          isMuchText={isMuchText}
           fluid={image.fluid}
           alt={image.alt}
           title={image.title}
@@ -116,8 +118,9 @@ Section.propTypes = {
   isMirror: PropTypes.bool,
   isCenter: PropTypes.bool,
   bgColor: PropTypes.oneOf(['dark', 'gray', 'none']),
-  isPadding: PropTypes.bool,
   buttonLink: PropTypes.string,
+  isPadding: PropTypes.bool,
+  isMuchText: PropTypes.bool,
 };
 
 Section.defaultProps = {
@@ -127,8 +130,9 @@ Section.defaultProps = {
   isMirror: false,
   isCenter: false,
   bgColor: 'none',
-  isPadding: false,
   buttonLink: '',
+  isPadding: false,
+  isMuchText: false,
 };
 
 export default Section;

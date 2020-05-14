@@ -13,7 +13,7 @@ const AboutMePage = ({ data: { datoCmsAboutMe } }) => (
     }}
   >
     <HelmetDatoCms seo={datoCmsAboutMe.seoMetaTags} />
-    {renderSetions(datoCmsAboutMe.content)}
+    {renderSetions(datoCmsAboutMe.content, { isMuchText: true })}
   </MainTemplate>
 );
 
