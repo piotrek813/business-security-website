@@ -107,7 +107,7 @@ const Footer = () => {
     <StyledWrapper>
       <P>
         Strona korzysta z plików cookies w celu śledzenia zachowania użytkownika
-        na stronie. ©2020 SomeCompany
+        na stronie. ©2020 Piotr Calinski
       </P>
       <div>
         <FooterData>

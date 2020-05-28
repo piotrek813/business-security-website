@@ -19,7 +19,7 @@ const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
         slug={`/${firstPost.slug}`}
         image={firstPost.hero}
         heading={firstPost.heading}
-        paragraph={firstPost.content.substr(0, 200)}
+        paragraph={firstPost.content[0].text.substr(0, 200)}
       />
       <PostGroup heading="Blog">
         {allDatoCmsPost.edges.map(
@@ -30,7 +30,7 @@ const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
                 slug={`/${slug}`}
                 image={hero}
                 heading={heading}
-                paragraph={content.substr(0, 200)}
+                paragraph={content[0].text.substr(0, 200)}
               />
             )
         )}
@@ -57,7 +57,11 @@ export const query = graphql`
         node {
           slug
           heading
-          content
+          content {
+            ... on DatoCmsText {
+              text
+            }
+          }
           hero {
             fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsFluid_noBase64

@@ -5,6 +5,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms';
 import media from 'utils/media';
 import MainTemplate from 'templates/MainTemplate';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 const Article = styled.article`
   padding: ${({ theme }) => theme.padding.normal};
@@ -37,14 +38,38 @@ const Article = styled.article`
   }
 `;
 
+const StyledImg = styled(Img)`
+  max-width: 100%;
+  max-height: 250px;
+  margin: 30px 0;
+
+  ${media.medium`
+      max-height: 400px;
+  `}
+
+  ${media.big`
+      max-height: 550px;
+  `}
+`;
+
 const ServicePageTemplate = ({ pageContext, data: { datoCmsService } }) => (
   <MainTemplate hero={{ heading: pageContext.heading, paragraph: '' }}>
     <HelmetDatoCms seo={datoCmsService.seoMetaTags} />
-    <Article
-      dangerouslySetInnerHTML={{
-        __html: pageContext.content.childMarkdownRemark.html,
-      }}
-    />
+    <Article>
+      {datoCmsService.content.map((item) => (
+        <React.Fragment key={item.id}>
+          {item.model.apiKey === 'text' && (
+            <div
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: item.textNode.childMarkdownRemark.html,
+              }}
+            />
+          )}
+          {item.model.apiKey === 'image' && <StyledImg {...item.image} />}
+        </React.Fragment>
+      ))}
+    </Article>
   </MainTemplate>
 );
 
@@ -53,6 +78,30 @@ export const query = graphql`
     datoCmsService(slug: { eq: $slug }) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
+      }
+      content {
+        ... on DatoCmsText {
+          id
+          model {
+            apiKey
+          }
+          textNode {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+        ... on DatoCmsImage {
+          id
+          model {
+            apiKey
+          }
+          image {
+            fixed(width: 900, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFixed_noBase64
+            }
+          }
+        }
       }
     }
   }

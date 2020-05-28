@@ -4,14 +4,18 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const services = await graphql(`
     query {
-      allDatoCmsService(filter: { content: { ne: "" } }) {
+      allDatoCmsService {
         edges {
           node {
             slug
             heading
-            contentNode {
-              childMarkdownRemark {
-                html
+            content {
+              ... on DatoCmsText {
+                textNode {
+                  childMarkdownRemark {
+                    html
+                  }
+                }
               }
             }
           }
@@ -20,19 +24,20 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  services.data.allDatoCmsService.edges.forEach(({ node }) => {
-    if (node.contentNode.childMarkdownRemark.html !== '') {
-      createPage({
-        path: node.slug,
-        component: path.resolve('./src/templates/ServicePageTemplate.js'),
-        context: {
-          slug: node.slug,
-          heading: node.heading,
-          content: node.contentNode,
-        },
-      });
+  services.data.allDatoCmsService.edges.forEach(
+    ({ node: { slug, heading, content } }) => {
+      if (content.length) {
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/ServicePageTemplate.js'),
+          context: {
+            slug,
+            heading,
+          },
+        });
+      }
     }
-  });
+  );
 
   const posts = await graphql(`
     query {
@@ -41,11 +46,6 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             slug
             heading
-            contentNode {
-              childMarkdownRemark {
-                html
-              }
-            }
           }
         }
       }
@@ -53,19 +53,16 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   posts.data.allDatoCmsPost.edges.forEach(
-    ({ node: { slug, hero, heading, contentNode } }) => {
-      if (contentNode.childMarkdownRemark.html !== '') {
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/PostTemplate.js'),
-          context: {
-            slug,
-            hero,
-            heading,
-            content: contentNode,
-          },
-        });
-      }
+    ({ node: { slug, hero, heading } }) => {
+      createPage({
+        path: slug,
+        component: path.resolve('./src/templates/PostTemplate.js'),
+        context: {
+          slug,
+          hero,
+          heading,
+        },
+      });
     }
   );
 };

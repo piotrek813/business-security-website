@@ -29,7 +29,7 @@ const IndexPage = ({
             image={image}
             heading={heading}
             paragraph={textHomePageNode}
-            buttonLink={content !== '' ? `/${slug}` : ''}
+            buttonLink={content.length ? `/${slug}` : ''}
           />
         )
       )}
@@ -43,7 +43,7 @@ const IndexPage = ({
             slug={`/${slug}`}
             image={hero}
             heading={heading}
-            paragraph={content.substr(0, 200)}
+            paragraph={content[0].text.substr(0, 200)}
           />
         )
       )}
@@ -75,7 +75,15 @@ export const query = graphql`
               html
             }
           }
-          content
+          content {
+            ... on DatoCmsText {
+              textNode {
+                childMarkdownRemark {
+                  html
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -87,7 +95,11 @@ export const query = graphql`
         node {
           slug
           heading
-          content
+          content {
+            ... on DatoCmsText {
+              text
+            }
+          }
           hero {
             fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsFluid_noBase64

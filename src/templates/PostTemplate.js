@@ -9,6 +9,7 @@ import Hero from 'components/Hero';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 const Header = styled.header`
   margin-top: 90px;
@@ -24,6 +25,20 @@ const Header = styled.header`
 
   ${media.big`
       font-size: 30px;
+  `}
+`;
+
+const StyledImg = styled(Img)`
+  max-width: 100%;
+  max-height: 250px;
+  margin: 10px 0;
+
+  ${media.medium`
+      max-height: 400px;
+  `}
+
+  ${media.big`
+      max-height: 550px;
   `}
 `;
 
@@ -68,11 +83,21 @@ const ServicePageTemplate = ({ pageContext, data: { datoCmsPost } }) => (
       </Header>
       <Hero isPost image={datoCmsPost.hero} />
       <HelmetDatoCms seo={datoCmsPost.seoMetaTags} />
-      <Article
-        dangerouslySetInnerHTML={{
-          __html: pageContext.content.childMarkdownRemark.html,
-        }}
-      />
+      <Article>
+        {datoCmsPost.content.map((item) => (
+          <React.Fragment key={item.id}>
+            {item.model.apiKey === 'text' && (
+              <div
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{
+                  __html: item.textNode.childMarkdownRemark.html,
+                }}
+              />
+            )}
+            {item.model.apiKey === 'image' && <StyledImg {...item.image} />}
+          </React.Fragment>
+        ))}
+      </Article>
       <Footer />
     </>
   </ThemeProvider>
@@ -87,6 +112,30 @@ export const query = graphql`
       hero {
         fluid(maxWidth: 1600, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsFluid_noBase64
+        }
+      }
+      content {
+        ... on DatoCmsText {
+          id
+          model {
+            apiKey
+          }
+          textNode {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+        ... on DatoCmsImage {
+          id
+          model {
+            apiKey
+          }
+          image {
+            fixed(width: 900, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsFixed_noBase64
+            }
+          }
         }
       }
     }
