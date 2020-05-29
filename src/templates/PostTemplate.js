@@ -82,7 +82,12 @@ const ServicePageTemplate = ({ pageContext, data: { datoCmsPost } }) => (
         <h1>{pageContext.heading}</h1>
       </Header>
       <Hero isPost image={datoCmsPost.hero} />
-      <HelmetDatoCms seo={datoCmsPost.seoMetaTags} />
+      <HelmetDatoCms seo={datoCmsPost.seoMetaTags}>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </HelmetDatoCms>
       <Article>
         {datoCmsPost.content.map((item) => (
           <React.Fragment key={item.id}>

@@ -28,7 +28,12 @@ const MainTemplate = ({ hero, children }) => {
   return (
     <ThemeProvider theme={theme}>
       <>
-        <HelmetDatoCms seo={datoCmsHome.seoMetaTags} />
+        <HelmetDatoCms seo={datoCmsHome.seoMetaTags}>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+            rel="stylesheet"
+          />
+        </HelmetDatoCms>
         <GlobalStyle />
         <Navbar />
         <HeaderTemplate heroImage={datoCmsHome.hero} {...hero} />
