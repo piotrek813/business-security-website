@@ -5,7 +5,7 @@ export default {
   gray: '#FBFBFB',
   white: '#FFFFFF',
   black: '#000000',
-  fontFamily: 'Open Sans, sans-serif',
+  fontFamily: "'Open Sans', sans-serif",
   fontWeight: {
     regular: 400,
     medium: 600,
