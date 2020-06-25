@@ -80,7 +80,7 @@ const Actions = styled.div`
 const Watermark = styled.span`
   color: ${({ theme }) => theme.white};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  opacity: 0.2;
+  opacity: 0.3;
   font-size: 10vw;
   padding: 20px 5px;
   width: 100%;
