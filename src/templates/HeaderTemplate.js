@@ -77,9 +77,24 @@ const Actions = styled.div`
     `}
 `;
 
+const Watermark = styled.span`
+  color: ${({ theme }) => theme.white};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  opacity: 0.2;
+  font-size: 10vw;
+  padding: 20px 5px;
+  width: 100%;
+  text-align: center;
+
+  ${media.xsmall`
+      font-size: 6vw;
+  `}
+`;
+
 const HeaderTemplate = ({ heading, paragraph, buttons, heroImage }) => (
   <StyledWrapper>
     <Hero image={heroImage} />
+    <Watermark>Safety & Security</Watermark>
     <StyledContent>
       <H1>{heading}</H1>
       {paragraph !== '' && <P>{paragraph}</P>}
