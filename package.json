@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "github.com/piotrek813/",
   "dependencies": {
+    "@chvrchbvrner26/ftp-deploy": "^1.1.2",
     "babel-plugin-styled-components": "^1.10.7",
     "dotenv": "^8.2.0",
     "gatsby": "^2.20.35",
