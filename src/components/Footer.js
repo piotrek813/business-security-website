@@ -113,7 +113,7 @@ const Footer = () => {
         <FooterData>
           {toList(contactData)}
           <div>
-            <H5>Zobacz nasze najnowsze artykuły:</H5>
+            <H5>Zobacz najnowsze artykuły:</H5>
             <Blog>{toList(postsHeading, true)}</Blog>
           </div>
         </FooterData>
