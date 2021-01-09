@@ -21,7 +21,7 @@ const BlogPage = ({ data: { allDatoCmsPost, datoCmsBlog } }) => {
         heading={firstPost.heading}
         paragraph={firstPost.content[0].text.substr(0, 200)}
       />
-      <PostGroup heading="Blog">
+      <PostGroup heading="Publikacje">
         {allDatoCmsPost.edges.map(
           ({ node: { slug, hero, heading, content } }, index) =>
             index !== 0 && (

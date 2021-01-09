@@ -35,7 +35,7 @@ const IndexPage = ({
       )}
     </SectionGroup>
 
-    <PostGroup heading="Blog">
+    <PostGroup heading="Publikacje">
       {allDatoCmsPost.edges.map(
         ({ node: { slug, hero, heading, content } }) => (
           <PostReference
