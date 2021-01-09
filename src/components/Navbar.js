@@ -112,7 +112,7 @@ const Navbar = () => {
     { to: '/', label: 'Home' },
     { to: '/o-mnie', label: 'O mnie' },
     { to: '/#services', label: 'Oferta' },
-    { to: '/blog', label: 'Blog' },
+    { to: '/publikacje', label: 'Publikacje' },
     { to: '/kontakt', label: 'Kontakt' },
   ];
 
