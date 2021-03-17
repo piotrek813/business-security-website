@@ -15,3 +15,11 @@ jobs:
       - run:
           name: deploy
           command: npx ftp-deploy
+      - run:
+          name: Notify DatoCMS about the status of the job
+          command: 'curl -X POST --data-binary "{\"payload\": { \"branch\": \"$CIRCLE_BRANCH\", \"status\": \"failed\" } }" https://webhooks.datocms.com/35b49098806ddcb05433/deploy-results'
+          when: on_fail
+      - run:
+          name: Notify DatoCMS about the status of the job
+          command: 'curl -X POST --data-binary "{\"payload\": { \"branch\": \"$CIRCLE_BRANCH\", \"status\": \"success\" } }" https://webhooks.datocms.com/35b49098806ddcb05433/deploy-results'
+          when: on_success
